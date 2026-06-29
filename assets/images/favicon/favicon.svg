@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><style>
+    #light-icon {
+      display: inline;
+    }
+    #dark-icon {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      #light-icon {
+        display: none;
+      }
+      #dark-icon {
+        display: inline;
+      }
+    }
+  </style><g id="light-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g><g transform="matrix(0.6944444444444444,0,0,0.6944444444444444,0,0)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" viewBox="0 0 1440 1440" width="1440" height="1440"><defs>
+    <style>
+      .st0 {
+        fill: #141414;
+      }
+
+      .st1 {
+        fill: #fff;
+      }
+    </style>
+  </defs><rect class="st0" x="120" y="120" width="1200" height="1200" rx="300" ry="300"></rect><rect class="st1" x="367.92" y="367.92" width="704.16" height="704.16" rx="176.04" ry="176.04" transform="translate(-298.23 720) rotate(-45)"></rect><circle class="st0" cx="720" cy="720" r="175"></circle></svg></g></g></svg></g><g id="dark-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g><g transform="matrix(0.6944444444444444,0,0,0.6944444444444444,0,0)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" viewBox="0 0 1440 1440" width="1440" height="1440"><defs>
+    <style>
+      .st0 {
+        fill: #141414;
+      }
+
+      .st1 {
+        fill: #fff;
+      }
+    </style>
+  </defs><rect class="st1" x="120" y="120" width="1200" height="1200" rx="300" ry="300"></rect><rect class="st0" x="367.92" y="367.92" width="704.16" height="704.16" rx="176.04" ry="176.04" transform="translate(-298.23 720) rotate(-45)"></rect><circle class="st1" cx="720" cy="720" r="175"></circle></svg></g></g></svg></g></svg>

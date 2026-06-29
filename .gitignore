@@ -1,0 +1,20 @@
+# IntelliJ IDEA
+*.iml
+out/
+gen/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# General logs
+*.log
+
+# Personal Tools
+/personal/
