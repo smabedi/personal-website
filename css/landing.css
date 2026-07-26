@@ -32,7 +32,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
-    line-height: 1;
+    line-height: 0.85;
     white-space: nowrap;
 }
 
@@ -41,10 +41,10 @@
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 1.55vw, 2rem);
-
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2.75vw, 2.2rem);
     color: var(--text-primary);
-    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;

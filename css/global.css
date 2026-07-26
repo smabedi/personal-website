@@ -6,24 +6,18 @@ body {
 @font-face {
     font-family: 'Outfit';
     font-style: normal;
-    font-weight: 300;
-    src: url('../assets/fonts/outfit-v15-latin-300.woff2') format('woff2');
+    font-weight: 100 900;
+    src: url('../assets/fonts/outfit-variable-font.ttf') format('truetype-variations'),
+    url('../assets/fonts/outfit-variable-font.ttf') format('truetype');
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Outfit';
+    font-family: 'Caveat';
     font-style: normal;
-    font-weight: 500;
-    src: url('../assets/fonts/outfit-v15-latin-500.woff2') format('woff2');
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Outfit';
-    font-style: normal;
-    font-weight: 900;
-    src: url('../assets/fonts/outfit-v15-latin-900.woff2') format('woff2');
+    font-weight: 400 700;
+    src: url('../assets/fonts/caveat-variable-font.ttf') format('truetype-variations'),
+    url('../assets/fonts/caveat-variable-font.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -94,7 +88,7 @@ a:hover {
 
 .btn-primary:hover {
     border-color: var(--accent-color);
-    background-color: rgba(76, 175, 80, 0.1);
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
 }
 
 /* Custom Cursor (Global) */
