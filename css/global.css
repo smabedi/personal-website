@@ -1,0 +1,122 @@
+body {
+    cursor: none; /* Hide the default operating system pointer */
+}
+
+/* Typography: Self-Hosted Fonts */
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../assets/fonts/outfit-v15-latin-300.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../assets/fonts/outfit-v15-latin-500.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../assets/fonts/outfit-v15-latin-900.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* Design System (CSS Variables) */
+:root {
+    --bg-color: #0a0a0c;
+    --text-primary: #f8f8f2;
+    --text-secondary: #646464;
+    --accent-color: #64eb16;
+
+    --font-main: 'Outfit', system-ui, sans-serif;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force form elements to inherit the Outfit font */
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Force hide default cursor on ALL elements, including links/buttons */
+*, *::before, *::after, a, button {
+    cursor: none !important;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main), serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Global Typography & Buttons */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-primary);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-secondary);
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* Custom Cursor (Global) */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    will-change: transform;
+}
+
+.custom-cursor.is-hovering {
+    background-color: #2aeb32;
+    box-shadow:
+            0 0 2px #73d07d,
+            0 0 10px #61db6b,
+            0 0 20px #61db6b,
+            0 0 40px #61db6b;
+}

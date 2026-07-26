@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- Page Title -->
-    <title>smabedi</title>
+    <title>smabedi - CORTEXT</title>
+
     <link rel="icon" type="image/png" href="/assets/images/favicon/favicon-96x96.png" sizes="96x96"/>
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon/favicon.svg"/>
     <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico"/>
@@ -14,37 +14,31 @@
     <meta name="apple-mobile-web-app-title" content="smabedi"/>
     <link rel="manifest" href="/assets/images/favicon/site.webmanifest"/>
 
-    <!-- Link to external stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Link to external JavaScript (Deferred & Module for scalability) -->
-    <script type="module" src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
-<main class="landing-container">
-    <div class="content-wrapper">
-        <h1>Initiating Jump to Hyperspace</h1>
+<div class="custom-cursor"></div>
 
-        <div class="animation-container">
-            <div class="loader">
-                <span><span></span><span></span><span></span><span></span></span>
-                <div class="base">
-                    <span></span>
-                    <div class="face"></div>
-                </div>
-            </div>
-            <div class="longfazers">
-                <span></span><span></span><span></span><span></span>
-            </div>
+<main class="page-wrapper">
+    <section class="hero">
+        <div class="hero-lockup">
+            <h1 class="hero-title">CORTEX<span>T</span></h1>
+            <p class="hero-subtitle">My Sandbox for Computer Science & Engineering</p>
         </div>
-
-    </div>
+    </section>
+    <a href="pages/counter.html" class="btn-primary">Initialize Workspace</a>
 </main>
 
 <footer class="site-footer">
-    <p>&copy; 2026 Seyed Mahdi Abedi — All rights reserved.</p>
+    <div class="footer-content">
+        <p>&copy; 2026 Seyed Mahdi Abedi — All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/smabedi" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
 </footer>
 
-<div class="custom-cursor"></div>
+<script src="js/core.js"></script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+/* Main Layout Wrapper */
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+/* --- Hero Section & Lockup --- */
+.hero {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    margin-bottom: 3rem;
+}
+
+/* --- Typography --- */
+.hero-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.hero-title span {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1.55vw, 2rem);
+
+    color: var(--text-primary);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.hero-subtitle span {
+    color: var(--accent-color);
+}
+
+/* Footer */
+.site-footer {
+    width: 100%;
+    padding: var(--spacing-md);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 500px) {
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}
