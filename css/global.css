@@ -153,6 +153,10 @@ a:hover {
         gap: clamp(1.25rem, 1.25vw, 5rem);
         max-width: 100%;
     }
+    .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
 }
 
 .nav-category {
