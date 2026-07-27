@@ -132,6 +132,7 @@ class CoreApp {
         this.pos.y += deltaY * this.speed;
 
         const velocity = Math.hypot(deltaX, deltaY);
+        const angle = Math.atan2(deltaY, deltaX);
         let targetScale = 1 + 0.1 * Math.sqrt(velocity);
 
         if (this.isHovering) {
@@ -139,7 +140,16 @@ class CoreApp {
         }
 
         this.scale += (targetScale - this.scale) * 0.1;
-        this.cursor.style.transform = `translate3d(${this.pos.x - this.cursorOffset}px, ${this.pos.y - this.cursorOffset}px, 0) scale(${this.scale})`;
+
+        const stretchAmount = Math.min(velocity * 0.025, 0.4);
+        const scaleX = this.scale + stretchAmount;
+        const scaleY = this.scale - (stretchAmount * 0.2);
+
+        this.cursor.style.transform = `
+        translate3d(${this.pos.x - this.cursorOffset}px, ${this.pos.y - this.cursorOffset}px, 0)
+        rotate(${angle}rad)
+        scale(${scaleX}, ${scaleY})
+        `;
     }
 }
 
