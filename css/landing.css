@@ -1,0 +1,129 @@
+/* Main Layout Wrapper */
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+/* --- Background Sandbox Layer --- */
+#sandbox-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* 1. The Canvas (Your Grid Algorithm) */
+#grid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+/* 2. The Parallax Contour/Map Layer */
+#parallax-layer {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: #202020;
+    -webkit-mask-image: url('../assets/images/contour-pattern.svg');
+    mask-image: url('../assets/images/contour-pattern.svg');
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    /*opacity: 0;*/
+    mask-position: center;
+    will-change: transform;
+}
+
+/* --- Hero Section & Lockup --- */
+.hero {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    margin-bottom: 2rem;
+}
+
+/* --- Typography --- */
+.hero-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    line-height: 0.85;
+    white-space: nowrap;
+}
+
+.hero-title span {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2.75vw, 2.2rem);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.hero-subtitle span {
+    color: var(--accent-color);
+}
+
+/* Footer */
+.site-footer {
+    width: 100%;
+    padding: var(--spacing-md);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 500px) {
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}

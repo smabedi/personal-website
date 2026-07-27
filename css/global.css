@@ -1,0 +1,200 @@
+body {
+    cursor: none; /* Hide the default operating system pointer */
+}
+
+/* Typography: Self-Hosted Fonts */
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('../assets/fonts/outfit-variable-font.ttf') format('truetype-variations'),
+    url('../assets/fonts/outfit-variable-font.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Caveat';
+    font-style: normal;
+    font-weight: 400 700;
+    src: url('../assets/fonts/caveat-variable-font.ttf') format('truetype-variations'),
+    url('../assets/fonts/caveat-variable-font.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* Design System (CSS Variables) */
+:root {
+    --bg-color: #0a0a0c;
+    --text-primary: #f8f8f2;
+    --text-secondary: #646464;
+    --accent-color: #64eb16;
+
+    --font-main: 'Outfit', system-ui, sans-serif;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Force form elements to inherit the Outfit font */
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Force hide default cursor on ALL elements, including links/buttons */
+*, *::before, *::after, a, button {
+    cursor: none !important;
+}
+
+::selection {
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main), serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Global Typography & Buttons */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-primary);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-primary);
+    background-color: rgba(10, 10, 10, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px); /* Safari support */
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 80%, transparent);
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary span {
+    color: var(--accent-color);
+}
+
+.btn-primary:hover {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+}
+
+/* Custom Cursor (Global) */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    will-change: transform;
+}
+
+.custom-cursor.is-hovering {
+    background-color: var(--accent-color);
+    box-shadow:
+            0 0 2px #73d07d,
+            0 0 10px #61db6b,
+            0 0 20px #61db6b,
+            0 0 40px #61db6b;
+    mix-blend-mode: screen;
+}
+
+/* --- Site Navigation (Web Component Styles) --- */
+.site-nav {
+    width: 100%;
+    padding: 1.5rem var(--spacing-md);
+    background-color: var(--bg-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-categories {
+    list-style: none;
+    display: flex;
+
+    gap: clamp(2.5rem, 6vw, 5rem);
+
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+    .nav-categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.nav-category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 800;
+}
+
+.category-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* --- Mobile/Touch Device Optimization --- */
+@media (pointer: coarse) {
+    /* Hide custom DOM element completely */
+    .custom-cursor {
+        display: none !important;
+    }
+
+    /* Strip the 'cursor: none' override so native touch behaves normally */
+    *, *::before, *::after, a, button {
+        cursor: auto !important;
+    }
+}
