@@ -47,6 +47,7 @@ customElements.define('site-nav', SiteNavigation);
 class CoreApp {
     constructor() {
         this.cursor = document.querySelector('.custom-cursor');
+        this.parallaxLayer = document.getElementById('parallax-layer');
 
         this.pointer = {x: -100, y: -100};
         this.pos = {x: 0, y: 0};
@@ -57,6 +58,9 @@ class CoreApp {
         this.isHovering = false;
 
         this.isTouchDevice = !window.matchMedia("(pointer: fine)").matches;
+
+        // Initialize the custom grid algorithm
+        this.gridSystem = new GridAlgorithm();
 
         this.init();
     }
@@ -98,8 +102,21 @@ class CoreApp {
     }
 
     render() {
-        // FUTURE BACKGROUND LOGIC GOES HERE
+        // Parallax Background Logic
+        if (this.parallaxLayer && !this.isTouchDevice) {
+            // Calculate offset: maps mouse position from -1 to 1, multiplied by intensity (20px)
+            const xOffset = ((this.pointer.x / window.innerWidth) - 0.5) * -20;
+            const yOffset = ((this.pointer.y / window.innerHeight) - 0.5) * -20;
+            this.parallaxLayer.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
+        }
 
+        // Grid Algorithm loop
+        if (this.gridSystem) {
+            this.gridSystem.update();
+            this.gridSystem.draw();
+        }
+
+        // Cursor Logic
         if (this.cursor) {
             this.updateCursorMath();
         }
@@ -126,6 +143,46 @@ class CoreApp {
     }
 }
 
+class GridAlgorithm {
+    constructor() {
+        this.canvas = document.getElementById('grid-canvas');
+        if (!this.canvas) return;
+
+        this.ctx = this.canvas.getContext('2d');
+        this.blockSize = 20; // 20px squares
+
+        // Handle resizing
+        window.addEventListener('resize', () => this.resizeCanvas());
+        this.resizeCanvas();
+    }
+
+    resizeCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.cols = Math.floor(this.canvas.width / this.blockSize);
+        this.rows = Math.floor(this.canvas.height / this.blockSize);
+
+        // TODO: Initialize the 2D arrays here based on new cols/rows
+    }
+
+    update() {
+        // TODO: CELLULAR AUTOMATA ALGORITHM HERE
+    }
+
+    draw() {
+        if (!this.ctx) return;
+
+        // Clear previous frame
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // TODO: Draw the cells here.
+        // Example:
+        // this.ctx.fillStyle = 'rgba(100, 235, 22, 0.2)'; // Faint accent color
+        // this.ctx.fillRect(x * this.blockSize, y * this.blockSize, this.blockSize, this.blockSize);
+    }
+}
+
+// Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
     window.App = new CoreApp();
 });

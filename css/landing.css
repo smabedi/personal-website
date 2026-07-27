@@ -8,6 +8,48 @@
     padding: var(--spacing-md);
 }
 
+/* --- Background Sandbox Layer --- */
+#sandbox-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* 1. The Canvas (Your Grid Algorithm) */
+#grid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+/* 2. The Parallax Contour/Map Layer */
+#parallax-layer {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: #202020;
+    -webkit-mask-image: url('../assets/images/contour-pattern.svg');
+    mask-image: url('../assets/images/contour-pattern.svg');
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    /*opacity: 0;*/
+    mask-position: center;
+    will-change: transform;
+}
+
 /* --- Hero Section & Lockup --- */
 .hero {
     text-align: center;
@@ -22,7 +64,7 @@
     flex-direction: column;
     align-items: center;
     width: max-content;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 /* --- Typography --- */
@@ -57,6 +99,9 @@
     width: 100%;
     padding: var(--spacing-md);
     border-top: 1px solid rgba(255,255,255,0.05);
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 10;
 }
 
 .footer-content {
