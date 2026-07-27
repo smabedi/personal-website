@@ -69,7 +69,7 @@
 
 /* --- Typography --- */
 .hero-title {
-    font-size: clamp(4rem, 10vw, 8rem);
+    font-size: clamp(3.2rem, 12vw, 8rem);
     font-weight: 900;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -85,7 +85,7 @@
 .hero-subtitle {
     font-family: 'Caveat', cursive;
     font-weight: 700;
-    font-size: clamp(1.1rem, 2.75vw, 2.2rem);
+    font-size: clamp(0.88rem, 3.3vw, 2.2rem);
     color: var(--text-primary);
     white-space: nowrap;
 }
@@ -121,9 +121,17 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 500px) {
+    .page-wrapper {
+        justify-content: flex-start;
+        padding-top: 15vh;
+    }
+    .site-footer {
+        padding: 1.5rem var(--spacing-sm);
+    }
     .footer-content {
         flex-direction: column;
-        gap: var(--spacing-sm);
+        gap: 0.5rem;
+        font-size: 0.75rem;
         text-align: center;
     }
 }
