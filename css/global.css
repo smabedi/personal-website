@@ -130,7 +130,7 @@ a:hover {
 /* --- Site Navigation (Web Component Styles) --- */
 .site-nav {
     width: 100%;
-    padding: 1.5rem var(--spacing-md);
+    padding: 1.5rem clamp(1rem, 5vw, var(--spacing-md));
     background-color: var(--bg-color);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
@@ -141,9 +141,7 @@ a:hover {
 .nav-categories {
     list-style: none;
     display: flex;
-
     gap: clamp(2.5rem, 6vw, 5rem);
-
     max-width: 90%;
     margin: 0 auto;
 }
@@ -152,6 +150,12 @@ a:hover {
     .nav-categories {
         flex-wrap: wrap;
         justify-content: center;
+        gap: clamp(1.25rem, 1.25vw, 5rem);
+        max-width: 100%;
+    }
+    .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -162,7 +166,7 @@ a:hover {
 }
 
 .category-title {
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-secondary);
@@ -172,11 +176,11 @@ a:hover {
 .category-links {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: clamp(0.5rem, 3vw, 1rem);
 }
 
 .nav-link {
-    font-size: 0.95rem;
+    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
     color: var(--text-primary);
     font-weight: 500;
     transition: color 0.2s ease;
