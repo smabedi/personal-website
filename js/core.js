@@ -135,7 +135,7 @@ class CoreApp {
         let targetScale = 1 + 0.1 * Math.sqrt(velocity);
 
         if (this.isHovering) {
-            targetScale *= 1.5;
+            targetScale *= 0.75;
         }
 
         this.scale += (targetScale - this.scale) * 0.1;
