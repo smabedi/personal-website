@@ -52,7 +52,10 @@ class CoreApp {
         this.pointer = {x: -100, y: -100};
         this.pos = {x: 0, y: 0};
 
-        this.speed = 0.15;
+        // Sepration timer for Refresh Rate
+        this.lastTime = performance.now();
+
+        this.speed = 25; // frame multiplier (Frame-independent)
         this.scale = 1;
         this.cursorOffset = 10;
         this.isHovering = false;
@@ -125,11 +128,19 @@ class CoreApp {
     }
 
     updateCursorMath() {
+        const currentTime = performance.now();
+        // Time Dif Calculation
+        const deltaTime = Math.min((currentTime - this.lastTime) / 1000, 0.1); 
+        this.lastTime = currentTime;
+
         const deltaX = this.pointer.x - this.pos.x;
         const deltaY = this.pointer.y - this.pos.y;
 
-        this.pos.x += deltaX * this.speed;
-        this.pos.y += deltaY * this.speed;
+        // Smoothness Calculation
+        const factor = 1 - Math.exp(-this.speed * deltaTime);
+
+        this.pos.x += deltaX * factor;
+        this.pos.y += deltaY * factor;
 
         const velocity = Math.hypot(deltaX, deltaY);
         const angle = Math.atan2(deltaY, deltaX);
@@ -139,7 +150,7 @@ class CoreApp {
             targetScale *= 0.75;
         }
 
-        this.scale += (targetScale - this.scale) * 0.1;
+        this.scale += (targetScale - this.scale) * factor;
 
         const stretchAmount = Math.min(velocity * 0.025, 0.4);
         const scaleX = this.scale + stretchAmount;
