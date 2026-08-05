@@ -115,15 +115,21 @@ a:hover {
     z-index: 9999;
     mix-blend-mode: difference;
     will-change: transform;
+    
+    /* GPU Transform */
+    transform: translate3d(-50%, -50%, 0);
+    
+    /* Fluid Animations For Cursor */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-cursor.is-hovering {
     background-color: var(--accent-color);
     box-shadow:
-            0 0 2px #73d07d,
-            0 0 10px #61db6b,
-            0 0 20px #61db6b,
-            0 0 40px #61db6b;
+        0 0 2px #73d07d,
+        0 0 10px #61db6b,
+        0 0 20px #61db6b,
+        0 0 40px #61db6b;
     mix-blend-mode: screen;
 }
 
