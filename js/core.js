@@ -1,13 +1,13 @@
 const SITE_ROUTES = {
     "Main": [
-        { name: "Home", path: "/index.html" }
+        { name: "Home", path: "/" }
     ],
     "Experimental": [
-        { name: "Counter", path: "/pages/counter.html" },
-        { name: "Pathfinder", path: "/pages/pathfinder.html" }
+        { name: "Counter", path: "/experimental/counter/" },
+        { name: "Pathfinder", path: "/experimental/pathfinder/" }
     ],
     "Theory": [
-        { name: "Game Theory", path: "/pages/game-theory.html" }
+        { name: "Game Theory", path: "/theory/game-theory/" }
     ]
 };
 
