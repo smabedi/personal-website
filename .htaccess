@@ -1,36 +1,54 @@
-# SECURITY: Redirect http to https
+RewriteEngine On
 
-RewriteCond %{http:X-Forwarded-Proto} =https
-RewriteRule ^(.*)$ http://%{http_HOST}%{REQUEST_URI} [L,R=301]
+# 1. SECURITY: Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# SECURITY: Prevent directory listing (people seeing your file structure)
+# 2. ROUTING: Clean Category Directories & Legacy Redirects
+DirectorySlash On
+
+# 2a. Canonical root: Redirect /index.html -> /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.html [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# 2b. Canonical directory indices: Strip /index.html from nested folders
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/(.+?)/index\.html [NC]
+RewriteRule ^(.+?)/index\.html$ /$1/ [R=301,L]
+
+# 2c. Generic subfolder rewrite fallback
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*?)/?$ $1.html [L]
+
+# 3. SECURITY: Prevent directory listing
 Options -Indexes
 
-# SECURITY: Prevent access to hidden files
-<FilesMatch "^\.">
+# 4. SECURITY: Block access to hidden files and system configs
+<FilesMatch "^\.|\.(env|json|log|md|iml)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# PERFORMANCE: Leverage Browser Caching (Speed up return visits)
+# 5. MIME TYPES: Ensure modern formats are served correctly
+AddType image/svg+xml .svg
+AddType image/x-icon .ico
+AddType image/png .png
+AddType font/woff2 .woff2
+
+# 6. PERFORMANCE: Leverage Browser Caching
 <IfModule mod_expires.c>
     ExpiresActive On
+    ExpiresDefault "access plus 1 month"
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType image/svg+xml "access plus 1 month"
-    ExpiresByType font/woff2 "access plus 1 month"
-    # For icons
-    ExpiresByType image/x-icon "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
     ExpiresByType image/png "access plus 1 month"
 </IfModule>
 
-# PERFORMANCE: Gzip Compression (Smaller files = faster load)
+# 7. PERFORMANCE: Gzip / Deflate Compression
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
 </IfModule>
-
-AddType image/svg+xml .svg
-# ADD MIME TYPES (Ensures server knows exactly what these files are)
-AddType image/x-icon .ico
-AddType image/png .png
-AddType image/svg+xml .svg
