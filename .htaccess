@@ -1,42 +1,54 @@
 RewriteEngine On
 
 # 1. SECURITY: Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. ROUTING: Clean Category Directories & Legacy Redirects
+# 2. CUSTOM ERROR PAGES (From Rasta)
+ErrorDocument 400 /400.shtml
+ErrorDocument 401 /401.shtml
+ErrorDocument 403 /403.shtml
+ErrorDocument 404 /404.shtml
+ErrorDocument 500 /500.shtml
+
+# 3. ROUTING: Clean Category Directories & Legacy Redirects
 DirectorySlash On
 
-# 2a. Canonical root: Redirect /index.html -> /
+# 3a. Canonical root: Redirect /index.html -> /
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.html [NC]
 RewriteRule ^index\.html$ / [R=301,L]
 
-# 2b. Canonical directory indices: Strip /index.html from nested folders
+# 3b. Canonical directory indices: Strip /index.html from nested folders
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/(.+?)/index\.html [NC]
 RewriteRule ^(.+?)/index\.html$ /$1/ [R=301,L]
 
-# 2c. Generic subfolder rewrite fallback
+# 3c. Generic subfolder rewrite fallback
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*?)/?$ $1.html [L]
 
-# 3. SECURITY: Prevent directory listing
+# 4. SECURITY: Prevent Directory Browsing
 Options -Indexes
 
-# 4. SECURITY: Block access to hidden files and system configs
-<FilesMatch "^\.|\.(env|json|log|md|iml)$">
+# 5. SECURITY: Protect System, Source & Environment Files (Enhanced from Rasta)
+<FilesMatch "^(\.|\.env|\.log|\.md|\.iml|\.git|\.yml|\.sh|json)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# 5. MIME TYPES: Ensure modern formats are served correctly
+# 6. SSI Configuration via Server-Parsed Handler
+<FilesMatch "\.(html|shtml)$">
+    AddHandler server-parsed .html .shtml
+    Options +Includes
+</FilesMatch>
+
+# 7. MIME TYPES & CACHE RULES
 AddType image/svg+xml .svg
 AddType image/x-icon .ico
 AddType image/png .png
 AddType font/woff2 .woff2
 
-# 6. PERFORMANCE: Leverage Browser Caching
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
@@ -46,9 +58,11 @@ AddType font/woff2 .woff2
     ExpiresByType font/woff2 "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresByType image/png "access plus 1 month"
+    # Dynamic JSON responses must never cache (From Rasta)
+    ExpiresByType application/json "access plus 0 seconds"
 </IfModule>
 
-# 7. PERFORMANCE: Gzip / Deflate Compression
+# 8. PERFORMANCE: Gzip / Deflate Compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
 </IfModule>

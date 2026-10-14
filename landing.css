@@ -1,0 +1,51 @@
+/* --- Hero Section & Lockup --- */
+.hero {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-lockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    margin-bottom: 2rem;
+}
+
+/* --- Typography --- */
+.hero-title {
+    font-size: clamp(3.2rem, 12vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    line-height: 0.85;
+    white-space: nowrap;
+}
+
+.hero-title span {
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: clamp(0.88rem, 3.3vw, 2.2rem);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.hero-subtitle span {
+    color: var(--accent-color);
+}
+
+/* Landing Page Mobile Adjustments */
+@media (max-width: 500px) {
+    .page-wrapper {
+        justify-content: flex-start;
+        padding-top: 15vh;
+    }
+}
