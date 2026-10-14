@@ -24,3 +24,6 @@ jobs:
             **/.git*/**
             **/.idea/**
             **/.github/**
+            **/personal/**
+            **/.env
+            **/router.php

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>401 Unauthorized | CORTEXT</title>
+    <!--#include virtual="/includes/favicons.html" -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+<div class="custom-cursor"></div>
+<div id="sandbox-bg">
+    <canvas id="grid-canvas"></canvas>
+    <div id="parallax-layer"></div>
+</div>
+
+<!--#include virtual="/includes/header.html" -->
+
+<main class="page-wrapper">
+    <section class="error-lockup">
+        <div class="error-code-wrapper">
+            <h1 class="error-code" data-text="401">401</h1>
+        </div>
+
+        <div class="error-divider"></div>
+
+        <div class="error-details">
+            <h2 class="error-title">AUTHENTICATION_REQUIRED</h2>
+            <p class="error-desc">Access to this node requires active credentials. The requested system state is isolated from anonymous client requests.</p>
+
+            <a href="/" class="btn-primary">
+                <span><<</span>&nbsp;&nbsp;Return to Workspace&nbsp;&nbsp;<span>>></span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<!--#include virtual="/includes/footer.html" -->
+
+<script src="/js/core.js"></script>
+</body>
+</html>
