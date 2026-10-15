@@ -30,7 +30,7 @@
             <h2 class="error-title">AUTHENTICATION_REQUIRED</h2>
             <p class="error-desc">Access to this node requires active credentials. The requested system state is isolated from anonymous client requests.</p>
 
-            <a href="/" class="btn-primary">
+            <a href="/" class="btn btn-primary">
                 <span><<</span>&nbsp;&nbsp;Return to Workspace&nbsp;&nbsp;<span>>></span>
             </a>
         </div>

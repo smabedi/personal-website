@@ -31,7 +31,7 @@
             <h2 class="error-title">ENTITY_NOT_FOUND</h2>
             <p class="error-desc">The requested node does not exist within the current CORTEXT runtime environment. The memory address may have been wiped or reallocated.</p>
 
-            <a href="/" class="btn-primary">
+            <a href="/" class="btn btn-primary">
                 <span><<</span>&nbsp;&nbsp;Return to Workspace&nbsp;&nbsp;<span>>></span>
             </a>
         </div>

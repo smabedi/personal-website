@@ -7,8 +7,8 @@ body {
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 100 900;
-    src: url('../assets/fonts/outfit-variable-font.ttf') format('truetype-variations'),
-    url('../assets/fonts/outfit-variable-font.ttf') format('truetype');
+    src: url('/assets/fonts/outfit-variable-font.ttf') format('truetype-variations'),
+    url('/assets/fonts/outfit-variable-font.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -16,19 +16,25 @@ body {
     font-family: 'Caveat';
     font-style: normal;
     font-weight: 400 700;
-    src: url('../assets/fonts/caveat-variable-font.ttf') format('truetype-variations'),
-    url('../assets/fonts/caveat-variable-font.ttf') format('truetype');
+    src: url('/assets/fonts/caveat-variable-font.ttf') format('truetype-variations'),
+    url('/assets/fonts/caveat-variable-font.ttf') format('truetype');
     font-display: swap;
 }
 
-/* Design System (CSS Variables) */
+/* Design System Tokens */
 :root {
     --bg-color: #0a0a0c;
     --text-primary: #f8f8f2;
-    --text-secondary: #646464;
+    --text-secondary: #505050;
     --accent-color: #64eb16;
 
     --font-main: 'Outfit', system-ui, sans-serif;
+
+    /* Component Architecture Design Tokens */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
@@ -69,7 +75,7 @@ body {
     flex-direction: column;
 }
 
-/* Global Typography & Buttons */
+/* Global Typography */
 a {
     color: var(--accent-color);
     text-decoration: none;
@@ -80,17 +86,54 @@ a:hover {
     color: var(--text-primary);
 }
 
-.btn-primary {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    color: var(--text-primary);
-    background-color: rgba(10, 10, 10, 0.2);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px); /* Safari support */
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 80%, transparent);
-    border-radius: 8px;
+/* ==========================================================================
+   COMPONENT: Button System (.btn)
+   ========================================================================== */
+
+/* 1. Base Component Class (Layout, Typography & Physics Only) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-main), serif;
+    font-size: 1rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    line-height: 1;
+    border: 1px solid transparent;
+    text-decoration: none;
+    box-sizing: border-box;
+    white-space: nowrap;
+    outline: none;
+    user-select: none;
+    transition:
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            color var(--transition-fast),
+            box-shadow var(--transition-fast),
+            transform var(--transition-fast);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* 2. Theme Modifiers */
+/* Default Terminal Glass Theme */
+.btn-primary {
+    background-color: rgba(10, 10, 12, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-color: color-mix(in srgb, var(--text-secondary) 70%, transparent);
+    color: var(--text-primary);
 }
 
 .btn-primary span {
@@ -100,9 +143,119 @@ a:hover {
 .btn-primary:hover {
     border-color: var(--accent-color);
     background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 20%, transparent);
+    color: var(--text-primary);
 }
 
-/* Custom Cursor (Global) */
+/* Solid Accent Theme */
+.btn-accent {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #0a0a0c;
+    font-weight: 600;
+}
+
+.btn-accent:hover {
+    background-color: #7aff2e;
+    border-color: #7aff2e;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent-color) 45%, transparent);
+    color: #0a0a0c;
+}
+
+/* Outline Subtle Theme */
+.btn-outline {
+    background-color: rgba(10, 10, 12, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-color: color-mix(in srgb, var(--text-secondary) 70%, transparent);
+    color: var(--text-primary);
+}
+
+.btn-outline span {
+    color: var(--accent-color);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 10%, transparent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 20%, transparent);
+    color: var(--text-primary);
+}
+
+/* Ghost / Text Theme */
+.btn-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Danger / Glitch Red Theme */
+.btn-danger {
+    background-color: rgba(255, 0, 60, 0.1);
+    border-color: rgba(255, 0, 60, 0.4);
+    color: #ff003c;
+}
+
+.btn-danger span {
+    color: var(--text-primary);
+}
+
+.btn-danger:hover {
+    background-color: #ff003c;
+    border-color: #ff003c;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+}
+
+/* 3. Size & Layout Modifiers */
+.btn-sm {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+    gap: 0.35rem;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    gap: 0.75rem;
+}
+
+.btn-icon-only {
+    padding: 0.6rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.btn-icon-only.btn-sm {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.4rem;
+}
+
+.btn-block {
+    width: 100%;
+    display: flex;
+}
+
+/* Mobile scale adjustments for the base button */
+@media (max-width: 500px) {
+    .btn:not(.btn-lg):not(.btn-sm):not(.btn-icon-only) {
+        padding: 0.75rem 1rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* ==========================================================================
+   GLOBAL INTERACTION & CHROME
+   ========================================================================== */
+
+/* Custom Cursor */
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -115,25 +268,21 @@ a:hover {
     z-index: 9999;
     mix-blend-mode: difference;
     will-change: transform;
-    
-    /* GPU Transform */
     transform: translate3d(-50%, -50%, 0);
-    
-    /* Fluid Animations For Cursor */
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-cursor.is-hovering {
     background-color: var(--accent-color);
     box-shadow:
-        0 0 2px #73d07d,
-        0 0 10px #61db6b,
-        0 0 20px #61db6b,
-        0 0 40px #61db6b;
+            0 0 2px #73d07d,
+            0 0 10px #61db6b,
+            0 0 20px #61db6b,
+            0 0 40px #61db6b;
     mix-blend-mode: screen;
 }
 
-/* --- Site Navigation (Web Component Styles) --- */
+/* Site Navigation */
 .site-nav {
     width: 100%;
     padding: 1.5rem clamp(1rem, 5vw, var(--spacing-md));
@@ -147,7 +296,7 @@ a:hover {
 .nav-categories {
     list-style: none;
     display: flex;
-    gap: clamp(2.5rem, 6vw, 5rem);
+    gap: clamp(2rem, 5vw, 4rem);
     max-width: 90%;
     margin: 0 auto;
 }
@@ -158,10 +307,6 @@ a:hover {
         justify-content: center;
         gap: clamp(1.25rem, 1.25vw, 5rem);
         max-width: 100%;
-    }
-    .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
     }
 }
 
@@ -196,22 +341,20 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* --- Mobile/Touch Device Optimization --- */
+/* Touch Device Optimization */
 @media (pointer: coarse) {
-    /* Hide custom DOM element completely */
     .custom-cursor {
         display: none !important;
     }
 
-    /* Strip the 'cursor: none' override so native touch behaves normally */
     *, *::before, *::after, a, button {
         cursor: auto !important;
     }
 }
 
-/* --- Main Layout Wrapper --- */
+/* Layout Wrapper */
 .page-wrapper {
-    flex: 1; /* Automatically pushes the footer to the bottom of the screen */
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -221,7 +364,7 @@ a:hover {
     z-index: 10;
 }
 
-/* --- Global Background Sandbox Layer --- */
+/* Background Sandbox Canvas & Mask */
 #sandbox-bg {
     position: fixed;
     top: 0;
@@ -251,8 +394,8 @@ a:hover {
     width: 110%;
     height: 110%;
     background-color: #202020;
-    -webkit-mask-image: url('../assets/images/contour-pattern.svg');
-    mask-image: url('../assets/images/contour-pattern.svg');
+    -webkit-mask-image: url('/assets/images/contour-pattern.svg');
+    mask-image: url('/assets/images/contour-pattern.svg');
     -webkit-mask-size: cover;
     mask-size: cover;
     -webkit-mask-position: center;
@@ -260,11 +403,11 @@ a:hover {
     will-change: transform;
 }
 
-/* --- Global Footer --- */
+/* Site Footer */
 .site-footer {
     width: 100%;
     padding: var(--spacing-md);
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     background-color: var(--bg-color);
     position: relative;
     z-index: 10;
@@ -285,7 +428,6 @@ a:hover {
     gap: var(--spacing-md);
 }
 
-/* --- Global Mobile Responsiveness --- */
 @media (max-width: 500px) {
     .site-footer {
         padding: 1.5rem var(--spacing-sm);
