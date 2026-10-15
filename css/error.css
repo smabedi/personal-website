@@ -17,7 +17,7 @@
 .error-code {
     font-size: clamp(8rem, 25vw, 22rem);
     font-weight: 900;
-    line-height: 0.85; /* Tighter line-height to align perfectly with the box */
+    line-height: 0.85;
     color: var(--accent-color);
     text-shadow: 0 0 30px color-mix(in srgb, var(--accent-color) 30%, transparent);
     position: relative;
@@ -25,7 +25,7 @@
     margin: 0;
 }
 
-/* The Glitch Pseudo-elements */
+/* Glitch Pseudo-elements */
 .error-code::before,
 .error-code::after {
     content: attr(data-text);
@@ -37,7 +37,7 @@
     opacity: 0.8;
 }
 
-/* Magenta Offset */
+/* Magenta Glitch Layer */
 .error-code::before {
     color: #ff003c;
     z-index: -1;
@@ -45,7 +45,7 @@
     animation: glitch-anim-1 3s infinite linear alternate-reverse;
 }
 
-/* Cyan Offset */
+/* Cyan Glitch Layer */
 .error-code::after {
     color: #00e6fe;
     z-index: -2;
@@ -103,13 +103,13 @@
     100% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
 }
 
-/* --- Mobile / Touch Device Graceful Degradation --- */
+/* --- Mobile / Touch Device Degradation --- */
 @media (max-width: 800px) {
     .error-lockup {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
-        padding-top: 10vh; /* Balance out the vertical rhythm */
+        padding-top: 10vh;
     }
 
     .error-divider {

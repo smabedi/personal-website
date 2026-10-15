@@ -42,7 +42,7 @@
     color: var(--accent-color);
 }
 
-/* Landing Page Mobile Adjustments */
+/* --- Landing Page Mobile Rhythm --- */
 @media (max-width: 500px) {
     .page-wrapper {
         justify-content: flex-start;

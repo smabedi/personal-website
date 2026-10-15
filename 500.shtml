@@ -30,7 +30,7 @@
             <h2 class="error-title">SYSTEM_FAILURE</h2>
             <p class="error-desc">A critical exception occurred within the CORTEXT runtime environment. The host server failed to fulfill an apparently valid request.</p>
 
-            <a href="/" class="btn-primary">
+            <a href="/" class="btn btn-primary">
                 <span><<</span>&nbsp;&nbsp;Return to Workspace&nbsp;&nbsp;<span>>></span>
             </a>
         </div>
